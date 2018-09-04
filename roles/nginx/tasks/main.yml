@@ -8,3 +8,8 @@
   service:
     name: nginx
     state: started
+
+- name: Copy Test Page
+  copy: 
+    src: index_page/
+    dest: /var/www/html
