@@ -1,0 +1,31 @@
+---
+- name: Add PHP 7 PPA repository
+  become: true
+  apt_repository:
+    repo: 'ppa:ondrej/php'
+
+- name: Install PHP 7
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    state: present
+  with_items:
+    - php{{ PHP_VERSION }} 
+    - php{{ PHP_VERSION }}-fpm 
+    - php{{ PHP_VERSION }}-mysql 
+    - php-common 
+    - php{{ PHP_VERSION }}-cli 
+    - php{{ PHP_VERSION }}-common 
+    - php{{ PHP_VERSION }}-json 
+    - php{{ PHP_VERSION }}-opcache 
+    - php{{ PHP_VERSION }}-readline 
+    - php{{ PHP_VERSION }}-mbstring 
+    - php{{ PHP_VERSION }}-xml 
+    - php{{ PHP_VERSION }}-gd 
+    - php{{ PHP_VERSION }}-curl
+
+- name: Copy nginx conf
+  template:
+    src: default
+    dest: /etc/nginx/sites-available/default
+  notify: Restart nginx
