@@ -1,0 +1,8 @@
+---
+- name: Instalar entorno para laravel con nginx
+  hosts: vagrant
+  remote_user: vagrant
+  become: true
+  roles:
+    - nginx
+
