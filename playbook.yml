@@ -2,7 +2,8 @@
 - name: Instalar entorno para laravel con nginx
   hosts: vagrant
   remote_user: vagrant
+  gather_facts: yes
   become: true
   roles:
     - nginx
-
+    - mysql
